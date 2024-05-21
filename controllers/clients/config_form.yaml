@@ -1,0 +1,31 @@
+# ===================================
+#  Form Behavior Config
+# ===================================
+
+# Record name
+name: Client
+
+# Model Form Field configuration
+form: $/mcore/servermonitor/models/client/fields.yaml
+
+# Model Class name
+modelClass: Mcore\ServerMonitor\Models\Client
+
+# Default redirect location
+defaultRedirect: mcore/servermonitor/clients
+
+# Create page
+create:
+    title: backend::lang.form.create_title
+    redirect: mcore/servermonitor/clients/update/:id
+    redirectClose: mcore/servermonitor/clients
+
+# Update page
+update:
+    title: backend::lang.form.update_title
+    redirect: mcore/servermonitor/clients
+    redirectClose: mcore/servermonitor/clients
+
+# Preview page
+preview:
+    title: backend::lang.form.preview_title

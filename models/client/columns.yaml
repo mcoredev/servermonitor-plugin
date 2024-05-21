@@ -1,0 +1,22 @@
+# ===================================
+#  List Column Definitions
+# ===================================
+
+columns:
+    domain:
+      label: Domain
+      searchable: true
+
+    api_key:
+      label: API key
+
+    version:
+      label: Version
+
+    is_active:
+      label: Is active
+      type: switch
+
+    last_connected:
+      label: Last connected
+      type: date

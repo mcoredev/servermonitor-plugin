@@ -1,0 +1,20 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+fields:
+    domain:
+      label: Domain
+      type: text
+
+    api_key:
+      label: API Key
+      type: text
+      readOnly: true
+
+    is_active:
+      label: Is active
+      type: switch
+
+
+

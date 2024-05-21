@@ -1,0 +1,8 @@
+{
+    "name": "mcore/servermonitor-plugin",
+    "type": "october-plugin",
+    "description": "Manage multiple OCMS projects from a single backend",
+    "require": {
+        "composer/installers": "~1.0"
+    }
+}

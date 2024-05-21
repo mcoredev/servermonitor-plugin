@@ -1,0 +1,14 @@
+# ===================================
+#  Form Field Definitions
+# ===================================
+
+
+fields: 
+
+    server_host:
+        label: Server host
+        type: text
+
+    api_key:
+        label: API Key
+        type: text
