@@ -17,7 +17,7 @@ class Plugin extends PluginBase
     {
         return [
             'name' => 'ServerMonitor',
-            'description' => 'No description provided yet...',
+            'description' => 'Manage multiple OCMS projects from a single backend',
             'author' => 'Mcore',
             'icon' => 'icon-leaf'
         ];
@@ -40,28 +40,14 @@ class Plugin extends PluginBase
     }
 
     /**
-     * registerComponents used by the frontend.
-     */
-    public function registerComponents()
-    {
-        return []; // Remove this line to activate
-
-        return [
-            'Mcore\ServerMonitor\Components\MyComponent' => 'myComponent',
-        ];
-    }
-
-    /**
      * registerPermissions used by the backend.
      */
     public function registerPermissions()
     {
-        return []; // Remove this line to activate
-
         return [
-            'mcore.servermonitor.some_permission' => [
+            'mcore.servermonitor.clients' => [
                 'tab' => 'ServerMonitor',
-                'label' => 'Some permission'
+                'label' => 'Client list'
             ],
         ];
     }
@@ -71,32 +57,14 @@ class Plugin extends PluginBase
         return [
             'servermonitor' => [
                 'label' => 'Server monitor Setting',
-                'description' => 'Setting....',
+                'description' => 'List of customer projects',
                 'category' => 'CATEGORY_CMS',
                 'icon' => 'octo-icon-user-group',
                 'url' => Backend::url('mcore/servermonitor/clients'),
+                'permissions' => ['mcore.servermonitor.clients'],
                 'size' => 'medium',
                 'order' => -100,
             ]
-        ];
-    }
-
-
-    /**
-     * registerNavigation used by the backend.
-     */
-    public function registerNavigation()
-    {
-        return [];
-        
-        return [
-            'servermonitor' => [
-                'label' => 'ServerMonitor',
-                'url' => Backend::url('mcore/servermonitor/clients'),
-                'icon' => 'icon-leaf',
-                'permissions' => ['mcore.servermonitor.*'],
-                'order' => 500,
-            ],
         ];
     }
 }
