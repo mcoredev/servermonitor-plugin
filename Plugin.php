@@ -19,7 +19,7 @@ class Plugin extends PluginBase
             'name' => 'ServerMonitor',
             'description' => 'Manage multiple OCMS projects from a single backend',
             'author' => 'Mcore',
-            'icon' => 'icon-leaf'
+            'icon' => 'icon-server'
         ];
     }
 
@@ -55,11 +55,11 @@ class Plugin extends PluginBase
     public function registerSettings()
     {
         return [
-            'servermonitor' => [
-                'label' => 'Server monitor Setting',
-                'description' => 'List of customer projects',
+            'servermonitor_clients' => [
+                'label' => 'Server clients monitor',
+                'description' => 'List of clients monitoring system updates',
                 'category' => 'CATEGORY_CMS',
-                'icon' => 'octo-icon-user-group',
+                'icon' => 'octo-icon-server',
                 'url' => Backend::url('mcore/servermonitor/clients'),
                 'permissions' => ['mcore.servermonitor.clients'],
                 'size' => 'medium',

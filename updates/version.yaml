@@ -1,3 +1,9 @@
-v1.0.1: 
+v1.0.3:
+  - Change column plugins
+  - change_field_clients_table.php
+v1.0.2:
+  - Add status code client
+  - add_status_clients_table.php
+v1.0.1:
   - First version of ServerMonitor
   - create_clients_table.php

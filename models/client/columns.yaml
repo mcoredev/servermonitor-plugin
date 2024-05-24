@@ -13,6 +13,26 @@ columns:
     version:
       label: Version
 
+    status:
+      label: Status
+      type: partial
+      path: column_status
+      width: 20%
+
+    _ping:
+      label: Ping
+      type: partial
+      path: column_button_ping
+      sortable: false
+      clickable: false
+
+    _info:
+      label: Info
+      type: partial
+      path: column_button_info
+      sortable: false
+      clickable: false
+
     is_active:
       label: Is active
       type: switch
@@ -20,3 +40,4 @@ columns:
     last_connected:
       label: Last connected
       type: date
+      format: j/n/Y H:i:s

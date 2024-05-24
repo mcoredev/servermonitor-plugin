@@ -2,7 +2,7 @@
 
 use Model;
 use Str;
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Http;
 
 /**
  * Client Model
@@ -23,6 +23,11 @@ class Client extends Model
      */
     public $rules = [];
 
+
+    protected $casts = [
+        'client_data' => 'object',
+    ];
+
     public static function boot()
     {
         parent::boot();
@@ -36,5 +41,26 @@ class Client extends Model
     public function generateClienApiKey()
     {
         return hash('sha256', Str::random(64));
+    }
+
+    public function getClientInfoUrl()
+    {
+        return $this->domain.'/monitoring-api/client-info';
+    }
+
+    public function getClientPingUrl()
+    {
+        return $this->domain.'/monitoring-api/client-ping';
+    }
+
+    public function callStatusRequest()
+    {
+        return Http::post($this->getClientInfoUrl(),['api_token' => $this->api_key ]);
+    }
+
+    public function callPingRequest()
+    {
+        //return Http::get($this->domain);
+        return Http::post($this->getClientPingUrl(),['api_token' => $this->api_key ]);
     }
 }

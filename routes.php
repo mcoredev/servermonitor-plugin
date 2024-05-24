@@ -1,33 +1,45 @@
 <?php
 
-use Illuminate\Support\Facades\Log;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Http;
+use October\Rain\Support\Facades\Flash;
 use Mcore\ServerMonitor\Models\Client;
+use Mcore\ServerMonitor\Classes\ServerMonitor;
 
-Route::get('/monitor/server/update', function() {
+Route::get('/monitor-api/clients-status', function() {
 
 	$clientList = Client::where('is_active',1)->get();
 
     foreach ($clientList as $client) {
 
-    	$response = Http::post($client->domain.'/monitor/client/info',['api_token' => $client->api_key ]);
-	    
-	    if( $response->successful() ) {
-	    	$body = $response->json();
+        $serverMonitor = new ServerMonitor($client);
+        $serverMonitor->clientInfo();
+    }
+});
 
-	    	if(!empty($body)) {
-		    	$client->version = $body['version'];
-		    	$client->plugins = json_encode($body);
-		    	$client->last_connected = Carbon::now();
-		    	$client->save();
-	    	}
-	    	else {
-	    		Log::error("Empty body from domain: ".$client->domain);
-	    	}
-	    }	
-	    else {
-    		Log::error("Unsuccessfully request: ".$client->domain);
-    	}
+Route::get('/monitor-api/client-status/{token}', function(string $token) {
+
+    $client = Client::where('api_key',$token)->first();
+
+    if($client) {
+        $serverMonitor = new ServerMonitor($client);
+        $serverMonitor->clientInfo(true);
+    }
+    else {
+        Flash::error("Client {$client->domain} not found!");
+    }
+});
+
+Route::get('/monitor-api/client-ping/{token}', function(string $token) {
+
+    $client = Client::where('api_key', $token)->first();
+
+    if($client) {
+        $serverMonitor = new ServerMonitor($client);
+        $serverMonitor->clientPing();
+    }
+    else {
+        Flash::error("Client {$client->domain} not found!");
     }
 });

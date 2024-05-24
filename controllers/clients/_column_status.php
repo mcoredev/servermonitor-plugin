@@ -1,0 +1,1 @@
+<span class="oc-icon-circle-full"><?= $record->status ?? 'Not available' ?></span>

@@ -7,6 +7,23 @@
 
 <?php if (!$this->fatalError): ?>
 
+    <div data-control="toolbar" class="mb-3">
+        <a
+                href="<?= Backend::url('mcore/servermonitor/clients/update/'.$formModel->id) ?>"
+                class="btn btn-primary oc-icon-pencil">
+            Edit
+        </a>&nbsp;
+
+        <button
+                type="button"
+                class="oc-icon-trash-o btn btn-danger"
+                data-request="onDelete"
+                data-load-indicator="<?= e(trans('backend::lang.form.deleting_name', ['name'=>$formRecordName])) ?>"
+                data-request-confirm="<?= e(trans('backend::lang.form.confirm_delete')) ?>">
+            Delete
+        </button>
+    </div>
+
     <div class="form-preview">
         <?= $this->formRenderPreview() ?>
     </div>

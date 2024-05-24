@@ -11,10 +11,35 @@ fields:
       label: API Key
       type: text
       readOnly: true
+      context:
+        - preview
 
     is_active:
       label: Is active
       type: switch
+      context:
+        - update
 
+    status:
+      label: Status
+      span: full
+      type: partial
+      path: field_status
+      context:
+        - preview
 
+    updated_at:
+        label: Last connected
+        type: datepicker
+        format: j/n/Y H:i
+        context:
+          - preview
+
+    _plugin_list:
+      label: Plugin list
+      span: full
+      type: partial
+      path: field_plugin_list
+      context:
+        - preview
 

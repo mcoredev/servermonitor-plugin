@@ -12,7 +12,7 @@ modelClass: Mcore\ServerMonitor\Models\Client
 title: Manage Clients
 
 # Link URL for each record
-recordUrl: mcore/servermonitor/clients/update/:id
+recordUrl: mcore/servermonitor/clients/preview/:id
 
 # Message to display if the list is empty
 noRecordsMessage: backend::lang.list.no_records
