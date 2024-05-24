@@ -1,6 +1,8 @@
 <?php namespace Mcore\ServerMonitor;
 
 use Backend;
+use Mcore\ServerMonitor\Classes\ServerMonitor;
+use Mcore\ServerMonitor\Models\Client;
 use System\Classes\PluginBase;
 
 /**
@@ -38,6 +40,29 @@ class Plugin extends PluginBase
     {
         //
     }
+
+    /**
+     * Registers the scheduled functions for this plugin.
+     *
+     * @return void
+     */
+    public function registerSchedule($schedule)
+    {
+        $schedule->call(function () {
+
+            $clientList = Client::where('is_active',1)->get();
+
+            if($clientList) {
+                foreach ($clientList as $client) {
+
+                    $serverMonitor = new ServerMonitor($client);
+                    $serverMonitor->clientInfo();
+                }
+            }
+
+        })->daily();
+    }
+
 
     /**
      * registerPermissions used by the backend.
